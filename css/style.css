@@ -7,49 +7,27 @@ body{
     display: block;
     background: black;
 }
-
-ul{
-    list-style: none;
-}
-a{
-    text-decoration: none;
-}
 nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width:100%;
-    border:0px solid rgb(255, 193, 60);
-    background-color: #000000;
-    position: absolute;
+    border:1px solid rgba(0,0,0,0.04);
+    background-color: #ffffff;
+    position: fixed;
     left: 0;
     top: 0;
     z-index: 100;
 }
-.logo{
-    margin-left: -10px;
-    margin-top: 10px;
-    
+.logo img{
+    height: 35px;
 }
-    .logo img{
-        height: 7vh; 
-        
-}
-    .logo h3{
-        color:rgb(233, 155, 52);
-        font-size: 25px;
-        margin-top: -40px;
-        font-family: poppins ;
-        font-style: initial;
-        font-weight: 8500;
-        font-size: xx-large;
-        margin-left: 45px;
-}
-  
-
 nav .menu{
     display: flex;
+    margin: 65px;
+    
 }
+
 nav .menu li a{
     height: 40px;
     line-height: 43px;
@@ -59,13 +37,14 @@ nav .menu li a{
     font-size: 0.8rem;
     text-transform: uppercase;
     font-weight: 500;
-    color:#ffffff;
+    color:#585858;
     letter-spacing: 1px;
 }
+
 .search{
     width:250px;
     height: 40px;
-    background-color: rgba(245, 234, 234, 0.8);
+    background-color: rgba(245,245,245,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,25 +52,28 @@ nav .menu li a{
     padding: 0px 20px;
 }
 .search input{
-    width: 100px;
+    width:100%;
     height: 30px;
     border:none;
     outline: none;
-    background-color:transparent;
+    background-color: transparent;
 }
 .search i{
     color:#3a3a3a;
 }
 nav .menu li a:hover{
-    background-color: #3f3c3c;
+    background-color: #242424;
     color:#ffffff;
     box-shadow: 5px 10px 30px rgba(53,53,53,0.1);
     transition: all ease 0.2s;
 }
-
+#main{
+    padding-top: 80px;
+    background-color: #ff0000;
+}
 
 #latest{
-    border-top: 1px solid rgb(255, 0, 0);
+    border-top: 1px solid rgb(255, 251, 251);
 }
 .latest-heading{
     margin: 30px 30px 10px 30px;
@@ -106,7 +88,7 @@ nav .menu li a:hover{
     flex-direction: column;
     align-items: center;
   
-    margin: 10px 20px;
+    margin: 10px 10px;
     border-radius: 10px;
     overflow:hidden;
     width:163px;
@@ -352,7 +334,6 @@ nav .menu-btn{
         text-align: center;
     }
 }
-
 @media(max-width:412px){
     .movies-box a,.movies-box{
         width: 100%;
