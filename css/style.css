@@ -334,6 +334,44 @@ nav .menu-btn{
         text-align: center;
     }
 }
+
+@media(max-width:440px){
+    .movies-box a,.movies-box{
+        width: 100%;
+    }
+    .movies-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 11px 19px 11px;
+    border-radius: 10px;
+    overflow:hidden;
+    width: 90px;
+    height: 250px;
+    background-color: transparent;
+    }
+
+    .movies-img{
+        width:90px;
+        height: 140px;
+        position: relative;
+       
+    }
+    .movies-img img{
+        width:90px;
+        
+        height: 140px;
+        object-fit: cover;
+    }
+    .logo img{
+        height: 30px;
+        margin: 65px 0px 0px -7px;
+    }
+    .search{
+        width: 30%;
+        height: 40px;
+    }
+}
 @media(max-width:412px){
     .movies-box a,.movies-box{
         width: 100%;
