@@ -3,133 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transfer Money</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f9;
-        }
-
-        .payment-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .logo {
-            max-width: 150px;
-            margin: 0 auto 1.5rem;
-        }
-
-        h1 {
-            color: #007bff;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        label {
-            text-align: left;
-            font-weight: bold;
-        }
-
-        input {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-        }
-
-        button {
-            padding: 0.75rem;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-        @media (max-width: 768px) {
-            .logo {
-            max-width: 100px;
-            margin: 0 auto 1.5rem;
-        }
-       
-        }
-       
-        @media (max-width: 768px) {
-            .payment-container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            input, button {
-                font-size: 0.9rem;
-                padding: 0.6rem;
-            }
-        }
-    </style>
+    <title>Bitcoin Transfer Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 400px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+.logo { justify-content: center;
+    align-items: center;
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+        }
+
+input, select, textarea {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button { justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
 <body>
-    
-    <div class="payment-container">
-        <!-- Logo on Top -->
-        <img src="images (1).png" alt="Logo" class="logo">
+    <div class="container">
+        <h2>Transfer Money</h2>
 
-        <!-- Heading -->
-        <h1>Transfer Money</h1>
-        <p>Fill in the details and click "Continue" to proceed with the transfer.</p>
+        <!-- Select Wallet -->
+        <label for="wallet-method">Select Payment Method:</label>
+        <select id="wallet-method" onchange="showWallet()">
+            <option value="">--Select--</option>
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT</option>
+        </select>
 
-        <form action="plan2.html" method="GET">
-            <!-- User Input Details -->
-            <label for="amount">Amount (in USD):</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+        <!-- Wallet Address -->
+        <div id="wallet-address" style="display: none;">
+            <p>copy and make payment:</p>
+            <input type="text" id="wallet-address-text" readonly />
+            <button onclick="copyAddress()">Copy</button>
+        </div>
 
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <!-- Form Inputs -->
+        <input type="text" id="name" placeholder="Name" />
+        <input type="email" id="email" placeholder="Email" />
+        <textarea id="description" placeholder="Description"></textarea>
 
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <!-- Upload File -->
+        <label for="file-upload">Choose Photo:</label>
+        <input type="file" id="file-upload" />
 
-            <!-- Submit Button -->
-            <button type="submit">Continue</button>
-        </form>
+        <!-- Buttons -->
+        <button onclick="submitForm()">Transfer</button>
+        <button onclick="goBack()"><a style="text-decoration: none; color: #ffffff;" href="Dashboard.html"> Back</a></button>
+
+        <!-- Notification -->
+        <p id="notification"></p>
     </div>
+    <script>
+
+const walletAddresses = {
+    BTC: "bc1qvsfe22lwmg84u82d20nrzpcusf8vpfc5ww4kt3",
+    ETH: "0xA495e43400EAEd62b40C722A85A2096593e57550",
+    USDT: "0xA495e43400EAEd62b40C722A85A2096593e57550"
+};
+
+function showWallet() {
+    const method = document.getElementById('wallet-method').value;
+    if (method) {
+        document.getElementById('wallet-address').style.display = 'block';
+        document.getElementById('wallet-address-text').value = walletAddresses[method];
+    } else {
+        document.getElementById('wallet-address').style.display = 'none';
+    }
+}
+
+function copyAddress() {
+    const address = document.getElementById('wallet-address-text');
+    address.select();
+    document.execCommand("copy");
+    alert("Wallet address copied!");
+}
+
+function submitForm() {
+    alert("Your withdrawal was successful! Payment will be sent in 24 hours.");
+}
+
+function goBack() {
+    window.history.back();
+}
+
+    </script>
 </body>
 </html>
-
